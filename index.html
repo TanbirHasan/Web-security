@@ -1,596 +1,1575 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ShieldX — Enterprise-grade web security platform. Protect your site with AI-powered threat detection, DDoS mitigation, and real-time malware scanning.">
+  <title>ShieldX — Web Security Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       SHIELDX — PREMIUM WEB SECURITY TEMPLATE
+       Template by Tanbir • 2025-2026
+    ============================================================ */
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link  rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.default.css">
-    <link rel="stylesheet" href="css/Responsive.css">
+    /* ── CSS CUSTOM PROPERTIES (Easy Theming) ── */
+    :root {
+      --primary:        #6366f1;
+      --primary-dark:   #4f46e5;
+      --secondary:      #8b5cf6;
+      --accent:         #06b6d4;
+      --accent-green:   #10b981;
+      --bg-dark:        #0a0a0f;
+      --bg-darker:      #05050a;
+      --bg-card:        rgba(255,255,255,0.04);
+      --bg-card-hover:  rgba(255,255,255,0.07);
+      --text-primary:   #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted:     #64748b;
+      --border:         rgba(255,255,255,0.08);
+      --border-hover:   rgba(99,102,241,0.5);
+      --font-heading:   'Plus Jakarta Sans', sans-serif;
+      --font-body:      'Plus Jakarta Sans', sans-serif;
+      --radius-sm:      8px;
+      --radius-md:      14px;
+      --radius-lg:      24px;
+      --radius-xl:      32px;
+      --shadow-glow:    0 0 40px rgba(99,102,241,0.25);
+      --shadow-card:    0 4px 24px rgba(0,0,0,0.4);
+      --transition:     0.3s ease;
+    }
 
-    <title>Web Security</title>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    ul { list-style:none; }
+
+    /* ── UTILITY ── */
+    .container { width:100%; max-width:1200px; margin:0 auto; padding:0 20px; }
+    .section-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background: rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.3);
+      color:var(--primary); padding:6px 16px; border-radius:50px;
+      font-size:13px; font-weight:600; letter-spacing:0.5px; margin-bottom:20px;
+    }
+    .section-badge::before { content:''; width:6px; height:6px; background:var(--primary); border-radius:50%; }
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--secondary) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .gradient-text-cyan {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px; padding:14px 28px;
+      border-radius:var(--radius-md); font-family:var(--font-body); font-size:15px;
+      font-weight:600; cursor:pointer; border:none; transition: var(--transition); white-space:nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color:#fff; box-shadow: 0 0 24px rgba(99,102,241,0.35);
+    }
+    .btn-primary:hover { transform:scale(1.05); box-shadow: 0 0 40px rgba(99,102,241,0.55); }
+    .btn-outline {
+      background:transparent; color:var(--text-primary);
+      border:1.5px solid var(--border-hover);
+    }
+    .btn-outline:hover { background:rgba(99,102,241,0.1); border-color:var(--primary); }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--bg-darker); }
+    ::-webkit-scrollbar-thumb { background:var(--primary-dark); border-radius:3px; }
+
+    /* ── NOISE OVERLAY ── */
+    .noise-overlay {
+      position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size:200px;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    .navbar {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      padding:18px 0; transition: var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:12px 0;
+    }
+    .navbar__inner {
+      display:flex; align-items:center; justify-content:space-between; gap:24px;
+    }
+    .navbar__logo {
+      font-size:22px; font-weight:800; letter-spacing:-0.5px;
+      background: linear-gradient(135deg, #fff, var(--primary));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      display:flex; align-items:center; gap:8px;
+    }
+    .navbar__logo-icon {
+      width:32px; height:32px; background:linear-gradient(135deg,var(--primary),var(--secondary));
+      border-radius:8px; display:flex; align-items:center; justify-content:center;
+      -webkit-text-fill-color:#fff; font-size:16px;
+    }
+    .navbar__links { display:flex; align-items:center; gap:32px; }
+    .navbar__links a {
+      color:var(--text-secondary); font-size:14px; font-weight:500;
+      transition:color var(--transition); position:relative;
+    }
+    .navbar__links a:hover { color:var(--text-primary); }
+    .navbar__links a::after {
+      content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px;
+      background:var(--primary); border-radius:1px; transition:width var(--transition);
+    }
+    .navbar__links a:hover::after { width:100%; }
+    .navbar__cta { display:flex; align-items:center; gap:12px; }
+    .navbar__cta .btn { padding:10px 20px; font-size:14px; }
+    .navbar__hamburger {
+      display:none; background:none; border:none; color:var(--text-primary);
+      cursor:pointer; padding:6px; border-radius:var(--radius-sm);
+      transition:background var(--transition);
+    }
+    .navbar__hamburger:hover { background:var(--bg-card); }
+    .navbar__hamburger svg { width:22px; height:22px; }
+    .navbar__mobile {
+      display:none; position:fixed; top:0; left:0; right:0;
+      background:rgba(10,10,15,0.97); backdrop-filter:blur(20px);
+      padding:80px 24px 32px; flex-direction:column; gap:16px;
+      transform:translateY(-100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      border-bottom:1px solid var(--border); z-index:999;
+    }
+    .navbar__mobile.open { transform:translateY(0); }
+    .navbar__mobile a {
+      color:var(--text-secondary); font-size:17px; font-weight:500;
+      padding:12px 0; border-bottom:1px solid var(--border); transition:color var(--transition);
+    }
+    .navbar__mobile a:hover { color:var(--text-primary); }
+    .navbar__mobile-close {
+      position:absolute; top:22px; right:24px; background:none; border:none;
+      color:var(--text-secondary); cursor:pointer; font-size:24px; line-height:1;
+    }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    .hero {
+      position:relative; min-height:100vh; display:flex; align-items:center;
+      padding:120px 0 80px; overflow:hidden;
+    }
+    .hero__blobs { position:absolute; inset:0; pointer-events:none; z-index:0; }
+    .hero__blob {
+      position:absolute; border-radius:50%; filter:blur(80px); opacity:0.18;
+      animation: blobFloat 8s ease-in-out infinite;
+    }
+    .hero__blob--1 {
+      width:600px; height:600px;
+      background:radial-gradient(circle, var(--primary), transparent);
+      top:-200px; left:-150px; animation-delay:0s;
+    }
+    .hero__blob--2 {
+      width:500px; height:500px;
+      background:radial-gradient(circle, var(--secondary), transparent);
+      top:100px; right:-100px; animation-delay:-3s;
+    }
+    .hero__blob--3 {
+      width:400px; height:400px;
+      background:radial-gradient(circle, var(--accent), transparent);
+      bottom:-100px; left:50%; animation-delay:-5s;
+    }
+    @keyframes blobFloat {
+      0%,100% { transform:translateY(0) scale(1); }
+      50% { transform:translateY(-30px) scale(1.05); }
+    }
+    .hero__grid {
+      position:absolute; inset:0;
+      background-image: linear-gradient(rgba(99,102,241,0.07) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(99,102,241,0.07) 1px, transparent 1px);
+      background-size:60px 60px; pointer-events:none;
+      mask-image:radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    }
+    .hero__inner {
+      position:relative; z-index:1; display:grid;
+      grid-template-columns:1fr 1fr; align-items:center; gap:60px;
+    }
+    .hero__content { animation:fadeUp 0.8s ease both; }
+    .hero__eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.25);
+      color:var(--accent); padding:7px 18px; border-radius:50px;
+      font-size:13px; font-weight:600; margin-bottom:28px;
+    }
+    .hero__eyebrow svg { width:14px; height:14px; }
+    .hero__heading {
+      font-size:clamp(40px, 5vw, 68px); font-weight:800; line-height:1.1;
+      letter-spacing:-2px; margin-bottom:24px;
+    }
+    .hero__sub {
+      font-size:18px; color:var(--text-secondary); line-height:1.7;
+      max-width:500px; margin-bottom:36px;
+    }
+    .hero__cta { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:44px; }
+    .hero__social-proof { display:flex; align-items:center; gap:16px; }
+    .hero__avatars { display:flex; }
+    .hero__avatar {
+      width:38px; height:38px; border-radius:50%; border:2px solid var(--bg-dark);
+      margin-left:-10px; background:linear-gradient(135deg,var(--primary),var(--secondary));
+      font-size:13px; font-weight:700; display:flex; align-items:center; justify-content:center;
+      color:#fff;
+    }
+    .hero__avatar:first-child { margin-left:0; }
+    .hero__proof-text { font-size:14px; color:var(--text-secondary); }
+    .hero__proof-text strong { color:var(--text-primary); }
+    .hero__stars { color:#f59e0b; font-size:13px; }
+
+    .hero__visual { position:relative; animation:fadeUp 0.8s ease 0.2s both; }
+    .hero__mockup {
+      background:rgba(255,255,255,0.03); border:1px solid var(--border);
+      border-radius:var(--radius-lg); overflow:hidden; backdrop-filter:blur(12px);
+      box-shadow:0 24px 80px rgba(0,0,0,0.5), var(--shadow-glow);
+      animation:float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-14px); }
+    }
+    .hero__mockup-bar {
+      background:rgba(255,255,255,0.05); padding:12px 16px;
+      display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border);
+    }
+    .hero__mockup-dot {
+      width:12px; height:12px; border-radius:50%;
+    }
+    .hero__mockup-dot:nth-child(1){ background:#ff5f57; }
+    .hero__mockup-dot:nth-child(2){ background:#febc2e; }
+    .hero__mockup-dot:nth-child(3){ background:#28c840; }
+    .hero__mockup-url {
+      flex:1; background:rgba(255,255,255,0.05); border-radius:6px;
+      padding:5px 12px; font-size:12px; color:var(--text-muted); margin-left:8px;
+      display:flex; align-items:center; gap:6px;
+    }
+    .hero__mockup-url::before {
+      content:'🔒'; font-size:11px;
+    }
+    .hero__mockup-screen {
+      padding:24px; display:flex; flex-direction:column; gap:14px; min-height:300px;
+    }
+    .hero__mockup-stat-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    .hero__mockup-stat {
+      background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:14px; text-align:center;
+    }
+    .hero__mockup-stat .val { font-size:22px; font-weight:800; }
+    .hero__mockup-stat .val.green { color:var(--accent-green); }
+    .hero__mockup-stat .val.blue { color:var(--primary); }
+    .hero__mockup-stat .val.red { color:#ef4444; }
+    .hero__mockup-stat .lbl { font-size:10px; color:var(--text-muted); margin-top:4px; }
+    .hero__mockup-progress {
+      background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:14px;
+    }
+    .hero__mockup-progress-label {
+      display:flex; justify-content:space-between; font-size:12px;
+      color:var(--text-secondary); margin-bottom:8px;
+    }
+    .hero__mockup-bar-track {
+      height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden;
+    }
+    .hero__mockup-bar-fill {
+      height:100%; border-radius:3px;
+      background:linear-gradient(90deg, var(--primary), var(--accent));
+    }
+    .hero__mockup-threats {
+      background:rgba(255,255,255,0.05); border:1px solid var(--border);
+      border-radius:var(--radius-sm); padding:14px;
+    }
+    .hero__mockup-threat-row {
+      display:flex; justify-content:space-between; align-items:center;
+      padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); font-size:12px;
+    }
+    .hero__mockup-threat-row:last-child { border-bottom:none; }
+    .hero__mockup-badge {
+      padding:3px 8px; border-radius:4px; font-size:10px; font-weight:600;
+    }
+    .badge-blocked { background:rgba(16,185,129,0.15); color:var(--accent-green); }
+    .badge-warn { background:rgba(251,191,36,0.15); color:#fbbf24; }
+
+    .hero__badges {
+      position:absolute; pointer-events:none;
+    }
+    .hero__badge-float {
+      position:absolute; background:rgba(10,10,15,0.9); border:1px solid var(--border);
+      backdrop-filter:blur(12px); border-radius:12px; padding:10px 14px;
+      display:flex; align-items:center; gap:8px; font-size:12px; font-weight:600;
+      box-shadow:var(--shadow-card); white-space:nowrap;
+    }
+    .hero__badge-float.top-left { top:-20px; left:-60px; animation:badgeFloat 4s ease-in-out infinite; }
+    .hero__badge-float.bottom-right { bottom:30px; right:-60px; animation:badgeFloat 4s ease-in-out 2s infinite; }
+    .hero__badge-float.top-right { top:60px; right:-80px; animation:badgeFloat 4s ease-in-out 1s infinite; }
+    @keyframes badgeFloat {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-8px); }
+    }
+    .badge-dot { width:8px; height:8px; border-radius:50%; }
+    .badge-dot.green { background:var(--accent-green); box-shadow:0 0 8px var(--accent-green); }
+    .badge-dot.blue { background:var(--primary); box-shadow:0 0 8px var(--primary); }
+    .badge-dot.red { background:#ef4444; box-shadow:0 0 8px #ef4444; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(30px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    /* ============================================================
+       LOGOS / TRUSTED BY
+    ============================================================ */
+    .logos {
+      padding:48px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+      overflow:hidden; position:relative;
+    }
+    .logos::before, .logos::after {
+      content:''; position:absolute; top:0; bottom:0; width:120px; z-index:2; pointer-events:none;
+    }
+    .logos::before { left:0; background:linear-gradient(90deg, var(--bg-dark), transparent); }
+    .logos::after  { right:0; background:linear-gradient(-90deg, var(--bg-dark), transparent); }
+    .logos__label {
+      text-align:center; font-size:13px; color:var(--text-muted); font-weight:500;
+      letter-spacing:1px; text-transform:uppercase; margin-bottom:28px;
+    }
+    .logos__track-wrap { overflow:hidden; }
+    .logos__track {
+      display:flex; align-items:center; gap:0;
+      animation:marquee 28s linear infinite; width:max-content;
+    }
+    .logos__track:hover { animation-play-state:paused; }
+    @keyframes marquee {
+      from { transform:translateX(0); }
+      to   { transform:translateX(-50%); }
+    }
+    .logos__item {
+      display:flex; align-items:center; gap:8px;
+      padding:12px 36px; color:var(--text-muted); font-weight:700; font-size:16px;
+      letter-spacing:-0.3px; white-space:nowrap; transition:color var(--transition);
+      border-right:1px solid var(--border);
+    }
+    .logos__item svg { width:22px; height:22px; flex-shrink:0; }
+    .logos__item:hover { color:var(--text-secondary); }
+  </style>
 </head>
 <body>
 
+<div class="noise-overlay"></div>
 
-<!-- Optional JavaScript; choose one of the two! -->
-
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">GreggHosting</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">HOSTING</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">DOMAIN</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SERVICE</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PRICING</a>
-                    </li>
-                    <button class="btn btn-primary">LOGIN</button>
-                    <button class="btn btn-primary">SIGNUP</button>
-
-                </ul>
-            </div>
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="#" class="navbar__logo" aria-label="ShieldX Home">
+          <div class="navbar__logo-icon">🛡</div>
+          ShieldX
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#stats">Results</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <div class="navbar__cta">
+          <a href="#pricing" class="btn btn-outline">Sign In</a>
+          <a href="#pricing" class="btn btn-primary">Start Free Trial →</a>
         </div>
-    </nav>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <nav class="navbar__mobile" id="mobileMenu" aria-label="Mobile navigation">
+    <button class="navbar__mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="#features">Features</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#stats">Results</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#pricing" class="btn btn-primary" style="margin-top:12px;justify-content:center;">Start Free Trial →</a>
+  </nav>
 </header>
 
-
-<section class="second-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 text">
-                <h2>PROTECT YOUR SITE AND KEEP CUSTOMER SAFE</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id magni, molestiae. Ab earum harum impedit incidunt recusandae, repellendus temporibus voluptate.</p>
-                <button class="btn btn-primary">See Pricing</button>
-            </div>
-            <div class="col-md-6">
-                <img src="img/3.jpg"  class="img-fluid" alt="web-image">
-
-            </div>
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+<main>
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero__blobs">
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+    <div class="hero__blob hero__blob--3"></div>
+  </div>
+  <div class="hero__grid"></div>
+  <div class="container">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          AI-Powered Web Security Platform
         </div>
+        <h1 class="hero__heading">
+          Protect Your Site<br>
+          <span class="gradient-text">Before Attacks Hit.</span>
+        </h1>
+        <p class="hero__sub">
+          ShieldX detects and neutralizes threats in real time — from DDoS attacks and SQL injections to zero-day exploits — so your business stays online and your customers stay safe.
+        </p>
+        <div class="hero__cta">
+          <a href="#pricing" class="btn btn-primary" id="hero-cta">Start 14-Day Free Trial →</a>
+          <a href="#demo" class="btn btn-outline">Watch Demo ▶</a>
+        </div>
+        <div class="hero__social-proof">
+          <div class="hero__avatars">
+            <div class="hero__avatar">JK</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#06b6d4,#8b5cf6)">AM</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#10b981,#6366f1)">SR</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">LT</div>
+            <div class="hero__avatar" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)">+</div>
+          </div>
+          <div>
+            <div class="hero__stars">★★★★★</div>
+            <div class="hero__proof-text"><strong>14,200+</strong> teams protected worldwide</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__mockup">
+          <div class="hero__mockup-bar">
+            <div class="hero__mockup-dot"></div>
+            <div class="hero__mockup-dot"></div>
+            <div class="hero__mockup-dot"></div>
+            <div class="hero__mockup-url">shieldx.io/dashboard — Security Overview</div>
+          </div>
+          <div class="hero__mockup-screen">
+            <div class="hero__mockup-stat-row">
+              <div class="hero__mockup-stat">
+                <div class="val green">99.98%</div>
+                <div class="lbl">Uptime SLA</div>
+              </div>
+              <div class="hero__mockup-stat">
+                <div class="val blue">1,847</div>
+                <div class="lbl">Threats Blocked</div>
+              </div>
+              <div class="hero__mockup-stat">
+                <div class="val red">0</div>
+                <div class="lbl">Breaches Today</div>
+              </div>
+            </div>
+            <div class="hero__mockup-progress">
+              <div class="hero__mockup-progress-label"><span>Security Score</span><span style="color:var(--accent-green);font-weight:700">97/100</span></div>
+              <div class="hero__mockup-bar-track"><div class="hero__mockup-bar-fill" style="width:97%"></div></div>
+            </div>
+            <div class="hero__mockup-threats">
+              <div class="hero__mockup-threat-row">
+                <span>SQL Injection Attempt</span><span class="hero__mockup-badge badge-blocked">Blocked</span>
+              </div>
+              <div class="hero__mockup-threat-row">
+                <span>DDoS Spike (12k rps)</span><span class="hero__mockup-badge badge-blocked">Mitigated</span>
+              </div>
+              <div class="hero__mockup-threat-row">
+                <span>Suspicious Bot Traffic</span><span class="hero__mockup-badge badge-warn">Monitoring</span>
+              </div>
+              <div class="hero__mockup-threat-row">
+                <span>SSL Certificate</span><span class="hero__mockup-badge badge-blocked">Valid</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero__badges">
+          <div class="hero__badge-float top-left">
+            <div class="badge-dot green"></div> Real-time Protection Active
+          </div>
+          <div class="hero__badge-float top-right">
+            <div class="badge-dot red"></div> 247 Attacks Blocked Today
+          </div>
+          <div class="hero__badge-float bottom-right">
+            <div class="badge-dot blue"></div> ⚡ 12ms Response Time
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 
-
-<section class="pricing">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="pricing-table">
-                    <h3>Dedicated Standard</h3>
-                    <p class="package-detail">Ideal solution for beginners</p>
-                    <br>
-                    <div class="offer">
-                        <p><strike>$3.99</strike></p>
-                        <button class="btn btn-primary">Save 20%</button>
-                    </div>
-                    <h3 class="monthly-price"><sup>$</sup>1.99<span class="small">/mo</span></h3>
-                        <br>
-                        <button class="btn btn-primary" id="btn">Select</button>
-                    <div class="description">
-                        <p>1 Website</p>
-                        <p>45 Gb ssd storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Google Ads Credit</p>
-                        <p>Free Domain For 1 Year</p>
-                        <a href="#">See All Features</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="pricing-table">
-                    <h3>Dedicated Starter</h3>
-                    <p class="package-detail">Perfect package for personal website</p>
-                    <br>
-                    <div class="offer">
-                        <p><strike>$6.99</strike></p>
-                        <button class="btn btn-primary">Save 45%</button>
-                    </div>
-                    <h3 class="monthly-price"><sup>$</sup>2.99<span class="small">/mo</span></h3>
-                    <br>
-                    <button class="btn btn-primary" id="btn">Select</button>
-                    <div class="description">
-                        <p>100 Website</p>
-                        <p>200 Gb ssd storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Google Ads Credit</p>
-                        <p>Free Domain For 1 Year</p>
-                        <a href="#">See All Features</a>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-                <div class="pricing-table">
-                    <h3>Dedicated Buisness</h3>
-                    <p class="package-detail">Perfect package for buisness sollutions</p>
-                    <br>
-                    <div class="offer">
-                        <p><strike>$8.99</strike></p>
-                        <button class="btn btn-primary">Save 20%</button>
-                    </div>
-                    <h3 class="monthly-price"><sup>$</sup>5.99<span class="small">/mo</span></h3>
-                    <br>
-                    <button class="btn btn-primary" id="btn">Select</button>
-                    <div class="description">
-                        <p>150 Website</p>
-                        <p>350 Gb ssd storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Google Ads Credit</p>
-                        <p>Free Domain For 1 Year</p>
-                        <a href="#">See All Features</a>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
+<!-- ============================================================
+     FEATURES SECTION
+============================================================ -->
+<section class="features" id="features" aria-label="Features">
+  <div class="container">
+    <div class="features__header" data-animate>
+      <div class="section-badge">Features</div>
+      <h2 class="features__heading gradient-text">Everything You Need to Stay<br>Impenetrable</h2>
+      <p class="features__sub">Enterprise-grade protection, intelligently simplified. Six layers of defense that work around the clock without you lifting a finger.</p>
     </div>
+    <div class="features__grid">
+      <div class="feature-card" data-animate data-delay="0">
+        <div class="feature-card__icon">🤖</div>
+        <h3 class="feature-card__title">AI Threat Intelligence</h3>
+        <p class="feature-card__desc">Our ML engine learns your traffic patterns and flags anomalies before they escalate. Detects 99.7% of novel attack vectors with zero false positives.</p>
+      </div>
+      <div class="feature-card" data-animate data-delay="50">
+        <div class="feature-card__icon">🔥</div>
+        <h3 class="feature-card__title">Web Application Firewall</h3>
+        <p class="feature-card__desc">Next-gen WAF rules stop SQL injection, XSS, CSRF, and OWASP Top 10 threats at the edge — before they ever reach your servers.</p>
+      </div>
+      <div class="feature-card" data-animate data-delay="100">
+        <div class="feature-card__icon">⚡</div>
+        <h3 class="feature-card__title">DDoS Mitigation at Scale</h3>
+        <p class="feature-card__desc">Absorb and deflect volumetric attacks up to 15 Tbps. Our global anycast network ensures sub-10ms mitigation with zero downtime for your users.</p>
+      </div>
+      <div class="feature-card" data-animate data-delay="150">
+        <div class="feature-card__icon">🔒</div>
+        <h3 class="feature-card__title">SSL/TLS Management</h3>
+        <p class="feature-card__desc">Auto-provisioned, auto-renewed SSL certificates with A+ ratings. Force HTTPS, enable HSTS, and configure TLS 1.3 with a single toggle.</p>
+      </div>
+      <div class="feature-card" data-animate data-delay="200">
+        <div class="feature-card__icon">🦠</div>
+        <h3 class="feature-card__title">Malware Scanner & Removal</h3>
+        <p class="feature-card__desc">Continuous deep scans detect injected code, backdoors, and crypto miners. One-click removal and automated file restoration from clean backups.</p>
+      </div>
+      <div class="feature-card" data-animate data-delay="250">
+        <div class="feature-card__icon">📊</div>
+        <h3 class="feature-card__title">Real-Time Security Dashboard</h3>
+        <p class="feature-card__desc">A single pane of glass across all your properties. Live threat feeds, GEO IP blocking, bot analytics, and compliance reports at your fingertips.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<section class="website-security">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 image">
-                <img src="img/security.PNG"  alt="" width="320" height="240">
-            </div>
-            <div class="col-md-6 text">
-                <h2>What's Websites Security</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate
-                    ultrices sit ut ullamcorper. Non in et imperdiet suspendisse duis
-                    sed amet non nunc. Dignissim ut pellentesque velit semper quam
-                    vulputate cursus. Nibh faucibus diam integer at consectetur
-                    convallis libero. Aliquam eu at dis augue aliquet scelerisque
-                    ornare. Id.</p>
-            </div>
-        </div>
+<!-- ============================================================
+     HOW IT WORKS
+============================================================ -->
+<section class="how" id="how-it-works" aria-label="How it works">
+  <div class="container">
+    <div class="how__header" data-animate>
+      <div class="section-badge">Process</div>
+      <h2>Up and Running in <span class="gradient-text-cyan">Under 5 Minutes</span></h2>
+      <p class="how__sub">No complex configurations, no server changes. Just point, click, and relax.</p>
     </div>
+    <div class="how__steps">
+      <div class="how__step" data-animate>
+        <div class="how__step-num">01</div>
+        <div class="how__step-content">
+          <div class="how__step-icon">🔗</div>
+          <h3>Connect Your Domain</h3>
+          <p>Add a CNAME record or install our one-line script. ShieldX automatically discovers all your subdomains, APIs, and assets in under 60 seconds. No downtime required.</p>
+        </div>
+      </div>
+      <div class="how__connector" aria-hidden="true">
+        <svg viewBox="0 0 60 100" fill="none"><path d="M30 0 Q60 50 30 100" stroke="url(#grad)" stroke-width="2" stroke-dasharray="6 4"/><defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      </div>
+      <div class="how__step how__step--alt" data-animate>
+        <div class="how__step-num">02</div>
+        <div class="how__step-content">
+          <div class="how__step-icon">🤖</div>
+          <h3>AI Baseline & Auto-Configure</h3>
+          <p>ShieldX's AI trains on your traffic for 24 hours, creating a unique behavioral fingerprint. Security rules are auto-tuned — no false positives, no manual rule writing.</p>
+        </div>
+      </div>
+      <div class="how__connector how__connector--rev" aria-hidden="true">
+        <svg viewBox="0 0 60 100" fill="none"><path d="M30 0 Q0 50 30 100" stroke="url(#grad2)" stroke-width="2" stroke-dasharray="6 4"/><defs><linearGradient id="grad2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#06b6d4"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient></defs></svg>
+      </div>
+      <div class="how__step" data-animate>
+        <div class="how__step-num">03</div>
+        <div class="how__step-content">
+          <div class="how__step-icon">🛡️</div>
+          <h3>Protected 24/7 — You Focus on Growth</h3>
+          <p>From this moment on, every request is inspected, every threat blocked, every certificate renewed automatically. You get real-time Slack/email alerts and a weekly security digest.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<section class="website-security-2">
-    <div class="container">
-        <h3 class="security-heading">What's Website Security?</h3>
-        <div class="row">
-            <div class="col-md-6 text">
-<h3>Show cusotmer they'll be safe on your site</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate
-                    ultrices sit ut ullamcorper. Non in et imperdiet suspendisse </p>
-                <p>Lorem Dignissim ut pellentesque velit semper quam
-                    vulputate cursus. Nibh faucibus diam integer at consectetur
-                    convallis libero. </p>
-            </div>
-            <div class="col-md-6">
-                <img src="img/1.png" class="img-fluid" alt="">
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-6 image">
-                <img src="img/3.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-6 text">
-                <h3>Prevent attacks and fix
-                    malware problems</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vulputate ultrices sit ut ullamcorper. Non in et imperdiet
-                    suspendisse</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vulputate ultrices</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 text">
-                <h3>Increased speed - coupled with
-                    encrypted data - boosts search
-                    rankings</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vulputate ultrices sit ut ullamcorper. Non in et imperdiet
-                    suspendisse </p>
-            </div>
-            <div class="col-md-6 image">
-                <img src="img/2.jpg" class="img-fluid" alt="">
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="col-md-6 image">
-                <img src="img/3.jpg" class="img-fluid" alt="">
-            </div>
-            <div class="col-md-6 text">
-                <h3>Secure backup site with 
-                    one-click restore</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vulputate ultrices sit ut ullamcorper.e</p>
-            </div>
-        </div>
+<!-- ============================================================
+     DEMO / PRODUCT SHOWCASE
+============================================================ -->
+<section class="demo" id="demo" aria-label="Product showcase">
+  <div class="container">
+    <div class="demo__header" data-animate>
+      <div class="section-badge">Live Dashboard</div>
+      <h2>See ShieldX in <span class="gradient-text">Action</span></h2>
+      <p class="demo__sub">A real-time view of your entire security landscape — intuitive, comprehensive, and gorgeous.</p>
     </div>
+    <div class="demo__frame-wrap" data-animate>
+      <div class="demo__browser">
+        <div class="demo__browser-bar">
+          <div class="demo__browser-btn" style="background:#ff5f57"></div>
+          <div class="demo__browser-btn" style="background:#febc2e"></div>
+          <div class="demo__browser-btn" style="background:#28c840"></div>
+          <div class="demo__browser-url">https://app.shieldx.io/dashboard</div>
+          <div class="demo__browser-actions">
+            <span style="color:var(--accent-green);font-size:11px;font-weight:600">● LIVE</span>
+          </div>
+        </div>
+        <div class="demo__browser-screen">
+          <div class="demo__screen-grid">
+            <div class="demo__screen-panel">
+              <div class="demo__panel-title">Threat Map — Last 24h</div>
+              <div class="demo__world-map">
+                <svg viewBox="0 0 400 220" class="demo__map-svg">
+                  <rect width="400" height="220" fill="transparent"/>
+                  <ellipse cx="100" cy="110" rx="50" ry="35" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="0.5"/>
+                  <ellipse cx="200" cy="100" rx="55" ry="40" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="0.5"/>
+                  <ellipse cx="310" cy="105" rx="60" ry="38" fill="rgba(99,102,241,0.07)" stroke="rgba(99,102,241,0.2)" stroke-width="0.5"/>
+                  <ellipse cx="160" cy="155" rx="25" ry="18" fill="rgba(99,102,241,0.05)" stroke="rgba(99,102,241,0.15)" stroke-width="0.5"/>
+                  <circle cx="210" cy="95" r="4" fill="#ef4444" opacity="0.8" class="map-dot"/>
+                  <circle cx="310" cy="88" r="6" fill="#ef4444" opacity="0.9" class="map-dot"/>
+                  <circle cx="95" cy="105" r="3" fill="#fbbf24" opacity="0.8" class="map-dot"/>
+                  <circle cx="170" cy="145" r="5" fill="#ef4444" opacity="0.7" class="map-dot"/>
+                  <circle cx="340" cy="115" r="3" fill="#fbbf24" opacity="0.8" class="map-dot"/>
+                  <circle cx="130" cy="90" r="4" fill="#10b981" opacity="0.9" class="map-dot"/>
+                  <line x1="210" y1="95" x2="130" y2="90" stroke="rgba(239,68,68,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+                  <line x1="310" y1="88" x2="130" y2="90" stroke="rgba(239,68,68,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+                  <line x1="170" y1="145" x2="130" y2="90" stroke="rgba(251,191,36,0.4)" stroke-width="1" stroke-dasharray="3 2"/>
+                </svg>
+              </div>
+            </div>
+            <div class="demo__screen-stats">
+              <div class="demo__mini-stat">
+                <div class="demo__mini-val" style="color:var(--accent-green)">99.98%</div>
+                <div class="demo__mini-lbl">Availability</div>
+              </div>
+              <div class="demo__mini-stat">
+                <div class="demo__mini-val" style="color:var(--primary)">3.2M</div>
+                <div class="demo__mini-lbl">Reqs Screened</div>
+              </div>
+              <div class="demo__mini-stat">
+                <div class="demo__mini-val" style="color:#ef4444">1,847</div>
+                <div class="demo__mini-lbl">Threats Blocked</div>
+              </div>
+              <div class="demo__mini-stat">
+                <div class="demo__mini-val" style="color:var(--secondary)">A+</div>
+                <div class="demo__mini-lbl">SSL Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo__float demo__float--1" data-animate>+240% Faster Load</div>
+      <div class="demo__float demo__float--2" data-animate>🛡 Zero Breach 180d</div>
+      <div class="demo__float demo__float--3" data-animate>⚡ 8ms Avg Latency</div>
+    </div>
+  </div>
 </section>
 
-
-<section class="faq">
-    <div class="container">
-        <h2 style="text-align: center">Website's Security FAQs</h2>
-        <div class="collapsecontent">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                           What makes website security so simple
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias fuga harum hic libero magni, mollitia nulla odio porro saepe voluptates?</p>
-                    </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                           Where can I find SSL certificate?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda commodi harum in ipsa ipsam libero omnis quibusdam quis sapiente velit.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          How often does website security scan my website for malware?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias amet assumenda aut fugit maxime odit, pariatur perferendis quis totam vero!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ============================================================
+     STATS SECTION
+============================================================ -->
+<section class="stats" id="stats" aria-label="Statistics">
+  <div class="stats__bg"></div>
+  <div class="container">
+    <div class="stats__grid">
+      <div class="stat-item" data-animate>
+        <div class="stat-item__num gradient-text-cyan" data-count="15" data-suffix="Tbps">0</div>
+        <div class="stat-item__label">DDoS Protection Capacity</div>
+      </div>
+      <div class="stat-item" data-animate>
+        <div class="stat-item__num gradient-text-cyan" data-count="99.98" data-suffix="%" data-decimals="2">0</div>
+        <div class="stat-item__label">Guaranteed Uptime SLA</div>
+      </div>
+      <div class="stat-item" data-animate>
+        <div class="stat-item__num gradient-text-cyan" data-count="14200" data-suffix="+">0</div>
+        <div class="stat-item__label">Businesses Protected</div>
+      </div>
+      <div class="stat-item" data-animate>
+        <div class="stat-item__num gradient-text-cyan" data-count="2.4" data-suffix="B+" data-decimals="1">0</div>
+        <div class="stat-item__label">Threats Blocked Monthly</div>
+      </div>
     </div>
-    </div>
+  </div>
 </section>
 
-
-<section class="extra-package">
-    <div class="container">
-        <h2 style="text-align: center">Are you looking for extra package</h2>
-        <div class="owl-carousel owl-theme">
-            <div class="row">
-                <div class="col-md-4"></div>
-            </div>
-            <div class="item">
-                <div class="inner-package">
-                    <h3>Dedicated Hosting</h3>
-                    <p>Optimized for small and medium buisness</p>
-                    <div class="items">
-                        <p>100 Website</p>
-                        <p>200 gb storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Free domain for 1 year</p>
-                    </div>
-                    <div class="inner-package-bottom">
-                        <h5 style="font-size: 14px">from</h5>
-                        <p style="font-weight: 500;font-size: 24px">$1.99/mo</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="inner-package">
-                    <h3>Web Hosting</h3>
-                    <p>Perfect for personal websites</p>
-                    <div class="items">
-                        <p>100 Website</p>
-                        <p>200 gb storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Free domain for 1 year</p>
-                    </div>
-                    <div class="inner-package-bottom">
-                        <h5 style="font-size: 14px">from</h5>
-                        <p style="font-weight: 500;font-size: 24px">$2.99/mo</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="inner-package">
-                    <h3>Reseller Hosting</h3>
-                    <p>Optimized for small and medium buisness</p>
-                    <div class="items">
-                        <p>100 Website</p>
-                        <p>200 gb storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Free domain for 1 year</p>
-                    </div>
-                    <div class="inner-package-bottom">
-                        <h5 style="font-size: 14px">from</h5>
-                        <p style="font-weight: 500;font-size: 24px">$4.99/mo</p>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="inner-package">
-                    <h3>Reseller Hosting</h3>
-                    <p>Optimized for small and medium buisness</p>
-                    <div class="items">
-                        <p>100 Website</p>
-                        <p>200 gb storge</p>
-                        <p>7 Parked Domains</p>
-                        <p>25 Subdomains</p>
-                        <p>Free domain for 1 year</p>
-                    </div>
-                    <div class="inner-package-bottom">
-                        <h5 style="font-size: 14px">from</h5>
-                        <p style="font-weight: 500;font-size: 24px">$9.99/mo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- ============================================================
+     TESTIMONIALS
+============================================================ -->
+<section class="testimonials" id="testimonials" aria-label="Testimonials">
+  <div class="container">
+    <div class="testimonials__header" data-animate>
+      <div class="section-badge">Testimonials</div>
+      <h2>Trusted by Security Engineers<br><span class="gradient-text">Around the World</span></h2>
     </div>
+    <div class="testimonials__grid">
+      <div class="testimonial-card" data-animate>
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">"We were hit with a 9 Tbps DDoS attack during our product launch. ShieldX absorbed every packet. Our uptime? 100%. Our team? Slept through it. Absolute game-changer."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background:linear-gradient(135deg,var(--primary),var(--secondary))">JK</div>
+          <div>
+            <div class="testimonial-card__name">James Kim</div>
+            <div class="testimonial-card__role">CTO, NexaCorp</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-animate data-delay="80">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">"After our previous provider missed a SQL injection that cost us $80k, we switched to ShieldX. In 18 months they've blocked over 400,000 attacks. I can finally sleep at night."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background:linear-gradient(135deg,var(--accent),var(--primary))">AM</div>
+          <div>
+            <div class="testimonial-card__name">Aisha Martinez</div>
+            <div class="testimonial-card__role">Head of Security, Cloudvault</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card" data-animate data-delay="160">
+        <div class="testimonial-card__stars">★★★★★</div>
+        <p class="testimonial-card__quote">"Setup took 4 minutes. The AI had our rules dialed in within a day. Our PCI DSS audit passed first time with zero remediations. ShieldX is infrastructure I'll never remove."</p>
+        <div class="testimonial-card__author">
+          <div class="testimonial-card__avatar" style="background:linear-gradient(135deg,var(--accent-green),var(--accent))">SR</div>
+          <div>
+            <div class="testimonial-card__name">Sam Roberts</div>
+            <div class="testimonial-card__role">Lead DevOps, SafeLayer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-
-   <!-- <div class="owl-carousel owl-theme">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="item">
-                    <div class="inner-package">
-                        <h3>Dedicated Hosting</h3>
-                        <p>Optimized for small and medium buisness</p>
-                        <div class="items">
-                            <p>100 Website</p>
-                            <p>200 gb storge</p>
-                            <p>7 Parked Domains</p>
-                            <p>25 Subdomains</p>
-                            <p>Free domain for 1 year</p>
-                        </div>
-                        <div class="inner-package-bottom">
-                            <h5>from</h5>
-                            <p>$9.99/mo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="item">
-                    <div class="inner-package">
-                        <h3>Web Hosting</h3>
-                        <p>Perfect for personal websites</p>
-                        <div class="items">
-                            <p>100 Website</p>
-                            <p>200 gb storge</p>
-                            <p>7 Parked Domains</p>
-                            <p>25 Subdomains</p>
-                            <p>Free domain for 1 year</p>
-                        </div>
-                        <div class="inner-package-bottom">
-                            <h5>from</h5>
-                            <p>$9.99/mo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="item">
-                    <div class="inner-package">
-                        <h3>Reseller Hosting</h3>
-                        <p>Optimized for small and medium buisness</p>
-                        <div class="items">
-                            <p>100 Website</p>
-                            <p>200 gb storge</p>
-                            <p>7 Parked Domains</p>
-                            <p>25 Subdomains</p>
-                            <p>Free domain for 1 year</p>
-                        </div>
-                        <div class="inner-package-bottom">
-                            <h5>from</h5>
-                            <p>$9.99/mo</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="item">
-                    <div class="inner-package">
-                        <h3>Dedicated Hosting</h3>
-                        <p>Optimized for small and medium buisness</p>
-                        <div class="items">
-                            <p>100 Website</p>
-                            <p>200 gb storge</p>
-                            <p>7 Parked Domains</p>
-                            <p>25 Subdomains</p>
-                            <p>Free domain for 1 year</p>
-                        </div>
-                        <div class="inner-package-bottom">
-                            <h5>from</h5>
-                            <p>$9.99/mo</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
--->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="money">
-    <div class="container">
-        <div class="inner-box">
-            <h3 >30 Day Money Back Guarantee</h3>
-            <p>Lorem ipsum dolor sit amet, consecs t totam!</p>
-            <p>text ever since</p>
-            <button class="btn btn-primary">Get Started</button>
-        </div>
+<!-- ============================================================
+     TRUSTED BY / LOGOS MARQUEE
+============================================================ -->
+<section class="logos" aria-label="Trusted by companies">
+  <div class="logos__label">Trusted by security-first teams at</div>
+  <div class="logos__track-wrap">
+    <div class="logos__track">
+      <!-- First set -->
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" fill="none" stroke="#0a0a0f" stroke-width="1.5"/></svg>
+        Cloudvault
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        NexaCorp
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 22,20 2,20"/></svg>
+        TriForce
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        Solaris AI
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z" opacity="0.3"/><path d="M8 8h8v8H8z"/></svg>
+        BlockStack
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        SafeLayer
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 12L12 2l10 10-10 10z"/></svg>
+        DiamondNet
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        GlobalEdge
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>
+        Matrixx
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        PulseOps
+      </div>
+      <!-- Duplicate for seamless loop -->
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" fill="none" stroke="#0a0a0f" stroke-width="1.5"/></svg>
+        Cloudvault
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        NexaCorp
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12,2 22,20 2,20"/></svg>
+        TriForce
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        Solaris AI
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z" opacity="0.3"/><path d="M8 8h8v8H8z"/></svg>
+        BlockStack
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        SafeLayer
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg>
+        GlobalEdge
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/></svg>
+        Matrixx
+      </div>
+      <div class="logos__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        PulseOps
+      </div>
     </div>
+  </div>
 </section>
 
-
-
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Subscribe for newsletter</h3>
-            </div>
-            <div class="col-md-6 input">
-                <input type="text" class="form-control" placeholder="Enter Your Email">
-                <button class="btn btn-primary">SUBSCRIBE</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4" id="socialicon">
-                <h2>GreggHosting</h2>
-                <div class="social-icon">
-                    <a href="#"><i class="fab fa-facebook fa-2x"></i></a>
-                    <a href="#"><i class="fab fa-instagram  fa-2x"></i></a>
-                    <a href="#"><i class="fab fa-youtube  fa-2x"></i></a>
-                    <a href="#"><i class="fab fa-twitter  fa-2x"></i></a>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <h4>Hosting</h4>
-                <a href="#">Web Hosting</a>
-                <a href="#">Cloud Hosting</a>
-                <a href="#">Vps Hosting</a>
-                <a href="#">WordPress Hosting</a>
-            </div>
-            <div class="col-md-2">
-                <h4>Domains</h4>
-                <a href="#">Domain Checker</a>
-                <a href="#">Free Domain</a>
-                <a href="#">Cheap SSL certificate</a>
-                <a href="#">Check domain name</a>
-            </div>
-            <div class="col-md-2">
-                <h4>Company</h4>
-                <a href="#">Why us?</a>
-                <a href="#">Our service</a>
-                <a href="#">About GreggHosting</a>
-
-            </div>
-            <div class="col-md-2">
-                <h4>Support</h4>
-                <a href="#">Report Abuse</a>
-                <a href="#">Knowledge base</a>
-                <a href="#">Tutorials</a>
-            </div>
-        </div>
-        <p>Copyright @ 2021 gregghost.com</p>
+<!-- ============================================================
+     PRICING SECTION
+============================================================ -->
+<section class="pricing" id="pricing" aria-label="Pricing">
+  <div class="pricing__blob"></div>
+  <div class="container">
+    <div class="pricing__header" data-animate>
+      <div class="section-badge">Pricing</div>
+      <h2>Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+      <p class="pricing__sub">No hidden fees, no surprise invoices. Start free, scale as you grow.</p>
+      <div class="pricing__toggle" id="pricingToggle" role="group" aria-label="Billing period">
+        <button class="pricing__toggle-btn active" data-period="monthly" id="btn-monthly">Monthly</button>
+        <button class="pricing__toggle-btn" data-period="annual" id="btn-annual">Annual <span class="pricing__save-badge">Save 20%</span></button>
+      </div>
     </div>
+    <div class="pricing__grid">
+      <!-- Starter -->
+      <div class="pricing-card" data-animate>
+        <div class="pricing-card__tier">Starter</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__currency">$</span>
+          <span class="pricing-card__amount" data-monthly="29" data-annual="23">29</span>
+          <span class="pricing-card__period">/mo</span>
+        </div>
+        <p class="pricing-card__desc">Perfect for freelancers and small websites getting started with security.</p>
+        <ul class="pricing-card__features">
+          <li class="pricing-card__feature pricing-card__feature--yes">1 Website Protected</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Basic WAF Rules</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">SSL Certificate (Auto-Renew)</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Daily Malware Scan</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">1 Gbps DDoS Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Email Alerts</li>
+          <li class="pricing-card__feature pricing-card__feature--no">AI Threat Intelligence</li>
+          <li class="pricing-card__feature pricing-card__feature--no">Bot Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--no">Compliance Reports</li>
+        </ul>
+        <a href="#" class="btn btn-outline pricing-card__cta">Get Started</a>
+      </div>
+      <!-- Pro (highlighted) -->
+      <div class="pricing-card pricing-card--pro" data-animate data-delay="80">
+        <div class="pricing-card__popular">Most Popular</div>
+        <div class="pricing-card__tier">Pro</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__currency">$</span>
+          <span class="pricing-card__amount" data-monthly="79" data-annual="63">79</span>
+          <span class="pricing-card__period">/mo</span>
+        </div>
+        <p class="pricing-card__desc">For growing businesses that need full-stack protection and real-time intelligence.</p>
+        <ul class="pricing-card__features">
+          <li class="pricing-card__feature pricing-card__feature--yes">10 Websites Protected</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Advanced WAF + Custom Rules</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">SSL/TLS Management</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Real-Time Malware Scan</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">1 Tbps DDoS Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Slack + Email Alerts</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">AI Threat Intelligence</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Advanced Bot Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--no">Compliance Reports</li>
+        </ul>
+        <a href="#" class="btn btn-primary pricing-card__cta">Start Free Trial →</a>
+      </div>
+      <!-- Enterprise -->
+      <div class="pricing-card" data-animate data-delay="160">
+        <div class="pricing-card__tier">Enterprise</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__currency">$</span>
+          <span class="pricing-card__amount" data-monthly="249" data-annual="199">249</span>
+          <span class="pricing-card__period">/mo</span>
+        </div>
+        <p class="pricing-card__desc">For enterprises requiring custom SLAs, compliance, and dedicated security engineering.</p>
+        <ul class="pricing-card__features">
+          <li class="pricing-card__feature pricing-card__feature--yes">Unlimited Websites</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Enterprise WAF + Zero-Day Rules</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Multi-Domain SSL Management</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">24/7 Continuous Monitoring</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">15 Tbps DDoS Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">PagerDuty + Slack + Email</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">AI Threat Intelligence</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">Advanced Bot & API Protection</li>
+          <li class="pricing-card__feature pricing-card__feature--yes">SOC2 / PCI DSS Reports</li>
+        </ul>
+        <a href="#" class="btn btn-outline pricing-card__cta">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+============================================================ -->
+<section class="faq" id="faq" aria-label="FAQ">
+  <div class="container">
+    <div class="faq__header" data-animate>
+      <div class="section-badge">FAQ</div>
+      <h2>Common <span class="gradient-text">Questions</span></h2>
+      <p class="faq__sub">Everything you need to know before getting started.</p>
+    </div>
+    <div class="faq__list" id="faqList">
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          How quickly can ShieldX be set up and running?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>Most users are fully protected within 5 minutes. Simply add a CNAME record pointing your domain to ShieldX's network, and our system automatically discovers your assets, provisions SSL, and activates protection. No server access required — no downtime during setup.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          Will ShieldX slow down my website?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>No — ShieldX actually speeds your site up. Our global CDN with 200+ edge nodes caches your content and terminates connections closer to your users. On average, customers see a 40–60% improvement in page load times after switching to ShieldX.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          What types of attacks does ShieldX protect against?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>ShieldX protects against the full OWASP Top 10, DDoS attacks up to 15 Tbps, SQL injection, XSS, CSRF, credential stuffing, malicious bots, API abuse, zero-day exploits, malware injection, and more. Our AI models are continuously updated with new threat signatures.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          What happens if my site gets hacked while using ShieldX?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>In the unlikely event of a compromise, our Pro and Enterprise plans include a 30-minute incident response SLA. Our security engineers will immediately isolate the threat, remove malicious code, restore clean backups, and perform a root cause analysis — all at no extra cost.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          Is ShieldX compliant with GDPR, PCI DSS, and SOC 2?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>Yes. ShieldX is SOC 2 Type II certified and helps customers achieve PCI DSS Level 1 compliance. Enterprise plan includes ready-made compliance reports for GDPR, HIPAA, PCI DSS, and ISO 27001 audits. We're also fully GDPR-compliant in data handling.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          Can I cancel anytime? What about the free trial?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>Absolutely. The 14-day free trial requires no credit card. After that, you can cancel at any time with a single click — no cancellation fees, no lock-in contracts. We also offer a 30-day money-back guarantee on all paid plans if you're not completely satisfied.</p>
+        </div>
+      </div>
+      <div class="faq__item" data-animate>
+        <button class="faq__question" aria-expanded="false">
+          Do you offer a discount for nonprofits or startups?
+          <span class="faq__icon">+</span>
+        </button>
+        <div class="faq__answer">
+          <p>Yes! We offer a 50% discount for registered nonprofits and verified early-stage startups (under $1M ARR). Contact our sales team with your organization details and proof of status. We believe every website deserves enterprise-grade protection, regardless of size.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+============================================================ -->
+<section class="cta-banner" aria-label="Call to action">
+  <div class="cta-banner__bg"></div>
+  <div class="cta-banner__grid"></div>
+  <div class="container">
+    <div class="cta-banner__inner" data-animate>
+      <div class="cta-banner__badge">🛡 Start Protecting Today</div>
+      <h2 class="cta-banner__heading">Your Website is Under <span class="gradient-text">Attack Right Now.</span></h2>
+      <p class="cta-banner__sub">Every second unprotected is a second hackers are probing your site. Join 14,200+ businesses who stopped worrying and started growing.</p>
+      <div class="cta-banner__actions">
+        <a href="#pricing" class="btn btn-primary cta-banner__btn">Start 14-Day Free Trial — No Card Needed →</a>
+        <a href="#demo" class="btn btn-outline">See Live Demo</a>
+      </div>
+      <p class="cta-banner__note">✓ Setup in 5 minutes &nbsp;·&nbsp; ✓ 30-day money-back &nbsp;·&nbsp; ✓ No credit card required</p>
+    </div>
+  </div>
+  <div class="cta-banner__deco cta-banner__deco--1"></div>
+  <div class="cta-banner__deco cta-banner__deco--2"></div>
+</section>
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__top-border"></div>
+  <div class="container">
+    <div class="footer__main">
+      <div class="footer__brand">
+        <a href="#" class="navbar__logo" style="font-size:20px;margin-bottom:16px;display:inline-flex;">
+          <div class="navbar__logo-icon">🛡</div>ShieldX
+        </a>
+        <p class="footer__brand-desc">Enterprise web security, made simple. Protecting businesses from threats around the globe, 24 hours a day.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.261 5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Product</h4>
+        <ul class="footer__links">
+          <li><a href="#">Web Firewall (WAF)</a></li>
+          <li><a href="#">DDoS Protection</a></li>
+          <li><a href="#">SSL Management</a></li>
+          <li><a href="#">Bot Protection</a></li>
+          <li><a href="#">Malware Scanner</a></li>
+          <li><a href="#">API Security</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Company</h4>
+        <ul class="footer__links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press Kit</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4 class="footer__col-title">Resources</h4>
+        <ul class="footer__links">
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">API Reference</a></li>
+          <li><a href="#">Security Blog</a></li>
+          <li><a href="#">Status Page</a></li>
+          <li><a href="#">Changelog</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p class="footer__copy">© 2025 ShieldX Security, Inc. All rights reserved. &nbsp;·&nbsp; Template by Tanbir</p>
+      <div class="footer__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Security</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
+<!-- ============================================================
+     REMAINING CSS (SECTIONS)
+============================================================ -->
+<style>
+  /* ── FEATURES ── */
+  .features { padding:100px 0; }
+  .features__header { text-align:center; max-width:680px; margin:0 auto 64px; }
+  .features__heading { font-size:clamp(32px,4vw,48px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+  .features__sub { color:var(--text-secondary); font-size:17px; line-height:1.7; }
+  .features__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .feature-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md);
+    padding:32px; transition:all var(--transition); backdrop-filter:blur(12px);
+  }
+  .feature-card:hover {
+    background:var(--bg-card-hover); border-color:var(--border-hover);
+    transform:translateY(-6px); box-shadow:var(--shadow-glow), var(--shadow-card);
+  }
+  .feature-card__icon { font-size:36px; margin-bottom:20px; display:block; }
+  .feature-card__title { font-size:18px; font-weight:700; margin-bottom:12px; letter-spacing:-0.3px; }
+  .feature-card__desc { color:var(--text-secondary); font-size:14px; line-height:1.7; }
 
+  /* ── HOW IT WORKS ── */
+  .how { padding:100px 0; background:linear-gradient(180deg, transparent, rgba(99,102,241,0.04), transparent); }
+  .how__header { text-align:center; max-width:680px; margin:0 auto 72px; }
+  .how__header h2 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+  .how__sub { color:var(--text-secondary); font-size:17px; }
+  .how__steps { display:flex; flex-direction:column; gap:0; max-width:800px; margin:0 auto; }
+  .how__step {
+    display:grid; grid-template-columns:80px 1fr; gap:32px; align-items:start; padding:32px 0;
+  }
+  .how__step--alt { direction:rtl; }
+  .how__step--alt .how__step-content { direction:ltr; }
+  .how__step--alt .how__step-num { direction:ltr; }
+  .how__step-num {
+    font-size:56px; font-weight:900; line-height:1;
+    background:linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+    letter-spacing:-2px; min-width:80px; text-align:center;
+  }
+  .how__step-content {
+    background:var(--bg-card); border:1px solid var(--border);
+    border-radius:var(--radius-md); padding:28px 32px; backdrop-filter:blur(12px);
+  }
+  .how__step-icon { font-size:28px; margin-bottom:12px; }
+  .how__step-content h3 { font-size:20px; font-weight:700; margin-bottom:12px; }
+  .how__step-content p { color:var(--text-secondary); font-size:15px; line-height:1.7; }
+  .how__connector { width:60px; height:80px; margin:0 auto 0 40px; opacity:0.6; }
+  .how__connector--rev { margin:0 0 0 auto; margin-right:40px; }
 
-<script src="js/owl.carousel.min.js"></script>
+  /* ── DEMO ── */
+  .demo { padding:100px 0; }
+  .demo__header { text-align:center; max-width:680px; margin:0 auto 56px; }
+  .demo__header h2 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+  .demo__sub { color:var(--text-secondary); font-size:17px; }
+  .demo__frame-wrap { position:relative; max-width:900px; margin:0 auto; }
+  .demo__browser {
+    border-radius:var(--radius-lg); overflow:hidden;
+    background:rgba(255,255,255,0.03); border:1px solid var(--border);
+    box-shadow:0 40px 100px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05), var(--shadow-glow);
+  }
+  .demo__browser-bar {
+    background:rgba(255,255,255,0.04); padding:14px 20px;
+    display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border);
+  }
+  .demo__browser-btn { width:13px; height:13px; border-radius:50%; }
+  .demo__browser-url {
+    flex:1; margin:0 12px; background:rgba(255,255,255,0.05);
+    border-radius:6px; padding:5px 14px; font-size:12px; color:var(--text-muted);
+  }
+  .demo__browser-screen { padding:24px; }
+  .demo__screen-grid { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
+  .demo__screen-panel {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:16px;
+  }
+  .demo__panel-title { font-size:12px; color:var(--text-muted); margin-bottom:12px; font-weight:600; }
+  .demo__map-svg { width:100%; height:auto; }
+  .map-dot { animation:mapPulse 2s ease-in-out infinite; }
+  @keyframes mapPulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+  .demo__screen-stats { display:flex; flex-direction:column; gap:12px; }
+  .demo__mini-stat {
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:14px; text-align:center; flex:1;
+  }
+  .demo__mini-val { font-size:20px; font-weight:800; }
+  .demo__mini-lbl { font-size:10px; color:var(--text-muted); margin-top:4px; }
+  .demo__float {
+    position:absolute; background:rgba(10,10,15,0.9); border:1px solid var(--border);
+    backdrop-filter:blur(12px); border-radius:12px; padding:10px 16px;
+    font-size:13px; font-weight:600; white-space:nowrap;
+    box-shadow:var(--shadow-card);
+  }
+  .demo__float--1 { top:-20px; left:-40px; animation:badgeFloat 4s ease-in-out infinite; color:var(--accent-green); }
+  .demo__float--2 { bottom:20px; left:-70px; animation:badgeFloat 4s ease-in-out 1.5s infinite; color:var(--primary); }
+  .demo__float--3 { top:60px; right:-60px; animation:badgeFloat 4s ease-in-out 3s infinite; color:var(--accent); }
 
+  /* ── STATS ── */
+  .stats { position:relative; padding:80px 0; overflow:hidden; }
+  .stats__bg {
+    position:absolute; inset:0;
+    background:linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(6,182,212,0.05) 50%, rgba(139,92,246,0.08) 100%);
+    border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  }
+  .stats__grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
+  .stat-item { text-align:center; }
+  .stat-item__num {
+    font-size:clamp(40px,5vw,64px); font-weight:900; letter-spacing:-2px;
+    line-height:1; margin-bottom:12px;
+  }
+  .stat-item__label { color:var(--text-secondary); font-size:15px; font-weight:500; }
 
+  /* ── TESTIMONIALS ── */
+  .testimonials { padding:100px 0; }
+  .testimonials__header { text-align:center; max-width:680px; margin:0 auto 64px; }
+  .testimonials__header h2 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:0; }
+  .testimonials__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testimonial-card {
+    background:var(--bg-card); border:1px solid var(--border);
+    border-left:3px solid var(--primary); border-radius:var(--radius-md);
+    padding:32px; transition:all var(--transition); backdrop-filter:blur(12px);
+  }
+  .testimonial-card:hover {
+    transform:scale(1.02); border-left-color:var(--secondary);
+    box-shadow:var(--shadow-glow), var(--shadow-card);
+  }
+  .testimonial-card__stars { color:#f59e0b; font-size:15px; margin-bottom:16px; }
+  .testimonial-card__quote { color:var(--text-secondary); font-size:14px; line-height:1.8; margin-bottom:24px; font-style:italic; }
+  .testimonial-card__author { display:flex; align-items:center; gap:12px; }
+  .testimonial-card__avatar {
+    width:44px; height:44px; border-radius:50%; display:flex; align-items:center;
+    justify-content:center; font-size:14px; font-weight:700; color:#fff; flex-shrink:0;
+  }
+  .testimonial-card__name { font-size:14px; font-weight:700; }
+  .testimonial-card__role { font-size:12px; color:var(--text-muted); margin-top:2px; }
+
+  /* ── PRICING ── */
+  .pricing { padding:100px 0; position:relative; overflow:hidden; }
+  .pricing__blob {
+    position:absolute; width:700px; height:700px; border-radius:50%;
+    background:radial-gradient(circle, rgba(99,102,241,0.07), transparent);
+    top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;
+  }
+  .pricing__header { text-align:center; max-width:680px; margin:0 auto 52px; position:relative; }
+  .pricing__header h2 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+  .pricing__sub { color:var(--text-secondary); font-size:17px; margin-bottom:32px; }
+  .pricing__toggle {
+    display:inline-flex; background:rgba(255,255,255,0.05); border:1px solid var(--border);
+    border-radius:50px; padding:4px; gap:4px;
+  }
+  .pricing__toggle-btn {
+    background:none; border:none; color:var(--text-secondary); font-family:var(--font-body);
+    font-size:14px; font-weight:600; padding:9px 22px; border-radius:50px; cursor:pointer;
+    transition:all var(--transition); display:flex; align-items:center; gap:8px;
+  }
+  .pricing__toggle-btn.active { background:var(--primary); color:#fff; box-shadow:0 0 16px rgba(99,102,241,0.4); }
+  .pricing__save-badge {
+    background:rgba(16,185,129,0.15); color:var(--accent-green); font-size:11px;
+    padding:2px 7px; border-radius:4px; font-weight:700;
+  }
+  .pricing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
+  .pricing-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-lg);
+    padding:36px; transition:all var(--transition); backdrop-filter:blur(12px); position:relative;
+  }
+  .pricing-card:hover { border-color:var(--border-hover); transform:translateY(-4px); box-shadow:var(--shadow-card); }
+  .pricing-card--pro {
+    background:rgba(99,102,241,0.06);
+    border-color:rgba(99,102,241,0.4);
+    box-shadow:0 0 40px rgba(99,102,241,0.15), var(--shadow-card);
+    transform:scale(1.04);
+  }
+  .pricing-card--pro:hover { transform:scale(1.04) translateY(-4px); }
+  .pricing-card__popular {
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:#fff; font-size:12px; font-weight:700; padding:5px 16px; border-radius:50px;
+    white-space:nowrap; letter-spacing:0.3px;
+  }
+  .pricing-card__tier { font-size:13px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-bottom:16px; }
+  .pricing-card__price { display:flex; align-items:baseline; gap:2px; margin-bottom:12px; }
+  .pricing-card__currency { font-size:24px; font-weight:700; color:var(--text-secondary); }
+  .pricing-card__amount { font-size:56px; font-weight:900; letter-spacing:-2px; line-height:1; }
+  .pricing-card__period { color:var(--text-muted); font-size:15px; }
+  .pricing-card__desc { color:var(--text-secondary); font-size:13px; line-height:1.6; margin-bottom:24px; padding-bottom:24px; border-bottom:1px solid var(--border); }
+  .pricing-card__features { margin-bottom:28px; display:flex; flex-direction:column; gap:10px; }
+  .pricing-card__feature { display:flex; align-items:center; gap:10px; font-size:14px; }
+  .pricing-card__feature::before { content:''; width:18px; height:18px; border-radius:50%; flex-shrink:0; background-size:contain; }
+  .pricing-card__feature--yes { color:var(--text-primary); }
+  .pricing-card__feature--yes::before { background:rgba(16,185,129,0.15); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5' stroke-linecap='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); }
+  .pricing-card__feature--no { color:var(--text-muted); }
+  .pricing-card__feature--no::before { background:rgba(255,255,255,0.05); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2.5' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E"); }
+  .pricing-card__cta { display:block; text-align:center; width:100%; justify-content:center; }
+
+  /* ── FAQ ── */
+  .faq { padding:100px 0; }
+  .faq__header { text-align:center; max-width:680px; margin:0 auto 64px; }
+  .faq__header h2 { font-size:clamp(30px,4vw,46px); font-weight:800; letter-spacing:-1.5px; margin-bottom:16px; }
+  .faq__sub { color:var(--text-secondary); font-size:17px; }
+  .faq__list { max-width:780px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+  .faq__item {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:var(--radius-md);
+    overflow:hidden; transition:border-color var(--transition);
+  }
+  .faq__item.open, .faq__item:hover { border-color:var(--border-hover); }
+  .faq__question {
+    width:100%; display:flex; justify-content:space-between; align-items:center;
+    padding:20px 24px; background:none; border:none; color:var(--text-primary);
+    font-family:var(--font-body); font-size:16px; font-weight:600; cursor:pointer;
+    text-align:left; gap:16px; transition:color var(--transition);
+  }
+  .faq__question:hover { color:var(--primary); }
+  .faq__icon {
+    font-size:22px; color:var(--primary); line-height:1; flex-shrink:0; font-weight:400;
+    transition:transform 0.3s ease;
+  }
+  .faq__item.open .faq__icon { transform:rotate(45deg); }
+  .faq__answer { max-height:0; overflow:hidden; transition:max-height 0.4s ease, padding 0.3s ease; }
+  .faq__answer.open { max-height:300px; }
+  .faq__answer p { padding:0 24px 20px; color:var(--text-secondary); font-size:14px; line-height:1.8; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    position:relative; padding:100px 0; overflow:hidden;
+    border-top:1px solid var(--border);
+  }
+  .cta-banner__bg {
+    position:absolute; inset:0;
+    background:radial-gradient(ellipse 80% 80% at 50% 50%, rgba(99,102,241,0.12) 0%, transparent 70%);
+  }
+  .cta-banner__grid {
+    position:absolute; inset:0;
+    background-image:linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+                     linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:radial-gradient(ellipse 70% 70% at 50% 50%, black 0%, transparent 100%);
+  }
+  .cta-banner__inner { position:relative; z-index:1; text-align:center; max-width:780px; margin:0 auto; }
+  .cta-banner__badge {
+    display:inline-block; background:rgba(99,102,241,0.12); border:1px solid rgba(99,102,241,0.3);
+    color:var(--primary); padding:7px 18px; border-radius:50px; font-size:13px;
+    font-weight:600; margin-bottom:24px;
+  }
+  .cta-banner__heading { font-size:clamp(34px,5vw,58px); font-weight:900; letter-spacing:-2px; margin-bottom:20px; line-height:1.15; }
+  .cta-banner__sub { color:var(--text-secondary); font-size:18px; line-height:1.7; margin-bottom:40px; }
+  .cta-banner__actions { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:24px; }
+  .cta-banner__btn { font-size:16px; padding:17px 32px; }
+  .cta-banner__note { color:var(--text-muted); font-size:13px; }
+  .cta-banner__deco {
+    position:absolute; border-radius:50%; pointer-events:none;
+    animation:blobFloat 8s ease-in-out infinite;
+  }
+  .cta-banner__deco--1 {
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(99,102,241,0.1), transparent);
+    top:-200px; left:-100px; filter:blur(60px);
+  }
+  .cta-banner__deco--2 {
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(139,92,246,0.1), transparent);
+    bottom:-200px; right:-100px; filter:blur(60px); animation-delay:-4s;
+  }
+
+  /* ── FOOTER ── */
+  .footer { padding:80px 0 40px; border-top:1px solid transparent; }
+  .footer__top-border {
+    height:1px; background:linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+    margin-bottom:80px;
+  }
+  .footer__main { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:60px; }
+  .footer__brand-desc { color:var(--text-muted); font-size:14px; line-height:1.7; margin-bottom:24px; max-width:300px; }
+  .footer__socials { display:flex; gap:12px; }
+  .footer__social {
+    width:38px; height:38px; background:var(--bg-card); border:1px solid var(--border);
+    border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center;
+    color:var(--text-muted); transition:all var(--transition);
+  }
+  .footer__social:hover { background:rgba(99,102,241,0.12); border-color:var(--primary); color:var(--primary); }
+  .footer__col-title { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-primary); margin-bottom:20px; }
+  .footer__links { display:flex; flex-direction:column; gap:12px; }
+  .footer__links a { color:var(--text-muted); font-size:14px; transition:color var(--transition); }
+  .footer__links a:hover { color:var(--text-primary); }
+  .footer__bottom { padding-top:32px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  .footer__copy { color:var(--text-muted); font-size:13px; }
+  .footer__legal { display:flex; gap:24px; }
+  .footer__legal a { color:var(--text-muted); font-size:13px; transition:color var(--transition); }
+  .footer__legal a:hover { color:var(--text-primary); }
+
+  /* ── SCROLL ANIMATIONS ── */
+  [data-animate] { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  [data-animate].visible { opacity:1; transform:translateY(0); }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    .hero__inner { grid-template-columns:1fr; }
+    .hero__visual { display:none; }
+    .features__grid { grid-template-columns:repeat(2,1fr); }
+    .stats__grid { grid-template-columns:repeat(2,1fr); gap:32px; }
+    .footer__main { grid-template-columns:1fr 1fr; }
+    .pricing__grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; }
+    .pricing-card--pro { transform:none; }
+    .pricing-card--pro:hover { transform:translateY(-4px); }
+  }
+  @media (max-width: 768px) {
+    .navbar__links, .navbar__cta { display:none; }
+    .navbar__hamburger { display:flex; }
+    .navbar__mobile { display:flex; }
+    .hero { padding:100px 0 60px; }
+    .features__grid { grid-template-columns:1fr; }
+    .testimonials__grid { grid-template-columns:1fr; }
+    .stats__grid { grid-template-columns:repeat(2,1fr); gap:24px; }
+    .how__step { grid-template-columns:60px 1fr; gap:16px; }
+    .how__step--alt { direction:ltr; }
+    .how__connector, .how__connector--rev { margin:0 auto 0 30px; }
+    .demo__screen-grid { grid-template-columns:1fr; }
+    .demo__screen-stats { flex-direction:row; flex-wrap:wrap; }
+    .demo__mini-stat { flex:1; min-width:calc(50% - 6px); }
+    .demo__float { display:none; }
+    .footer__main { grid-template-columns:1fr 1fr; }
+    .footer__brand { grid-column:1/-1; }
+    .cta-banner__actions { flex-direction:column; align-items:center; }
+  }
+  @media (max-width: 480px) {
+    .stats__grid { grid-template-columns:1fr 1fr; }
+    .footer__main { grid-template-columns:1fr; }
+    .footer__bottom { flex-direction:column; text-align:center; }
+    .footer__legal { justify-content:center; flex-wrap:wrap; gap:16px; }
+    .hero__cta { flex-direction:column; }
+    .btn { width:100%; justify-content:center; }
+    .hero__social-proof { flex-direction:column; align-items:flex-start; }
+    .how__step { grid-template-columns:1fr; }
+    .how__step-num { font-size:40px; }
+  }
+</style>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
 <script>
+  /* ── NAVBAR: blur on scroll ── */
+  const navbar = document.getElementById('navbar');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
 
-    var owl =  $('.owl-carousel').owlCarousel({
-        loop:true,
-        margin:15,
-        nav:true,
-        responsive:{
-            0:{
-                items:4
-            },
-            600:{
-                items:4
-            },
-            1000:{
-                items:4
-            },
-            1400:{
-                items:4
-            }
-        }
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  mobileClose.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ── INTERSECTION OBSERVER: fade-in animations ── */
+  const animObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.dataset.delay || 0;
+        setTimeout(() => entry.target.classList.add('visible'), Number(delay));
+        animObserver.unobserve(entry.target);
+      }
     });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
+  document.querySelectorAll('[data-animate]').forEach(el => animObserver.observe(el));
 
-    owl.on('mousewheel', '.owl-stage', function (e) {
-        if (e.deltaY>0) {
-            owl.trigger('next.owl');
-        } else {
-            owl.trigger('prev.owl');
-        }
+  /* ── STATS: count-up animation ── */
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const decimals = parseInt(el.dataset.decimals || 0);
+    const duration = 2000;
+    const step = 16;
+    const steps = duration / step;
+    let current = 0;
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      current = Math.min(current + increment, target);
+      el.textContent = (decimals > 0 ? current.toFixed(decimals) : Math.floor(current).toLocaleString()) + suffix;
+      if (current >= target) clearInterval(timer);
+    }, step);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.stats');
+  if (statsSection) statObserver.observe(statsSection);
+
+  /* ── FAQ: accordion ── */
+  document.querySelectorAll('.faq__question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq__item');
+      const answer = item.querySelector('.faq__answer');
+      const isOpen = item.classList.contains('open');
+      // close all
+      document.querySelectorAll('.faq__item.open').forEach(openItem => {
+        openItem.classList.remove('open');
+        openItem.querySelector('.faq__answer').classList.remove('open');
+        openItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+      });
+      // open clicked if was closed
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  /* ── PRICING: monthly/annual toggle ── */
+  const toggleBtns = document.querySelectorAll('.pricing__toggle-btn');
+  const amounts = document.querySelectorAll('.pricing-card__amount');
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      toggleBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const period = btn.dataset.period;
+      amounts.forEach(el => {
+        el.textContent = el.dataset[period];
+      });
+    });
+  });
+
+  /* ── SMOOTH SCROLL for all anchor links ── */
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
         e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
+  });
+
+  /* ── CTA BUTTON: pulse glow ── */
+  const heroCta = document.getElementById('hero-cta');
+  if (heroCta) {
+    heroCta.style.animation = 'pulse 2.5s ease-in-out infinite';
+  }
 </script>
 
+<style>
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 20px rgba(99,102,241,0.35); }
+    50%      { box-shadow: 0 0 50px rgba(99,102,241,0.65), 0 0 80px rgba(139,92,246,0.25); }
+  }
+</style>
 
 </body>
 </html>
