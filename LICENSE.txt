@@ -1,0 +1,77 @@
+SHIELDX — WEB SECURITY HTML TEMPLATE
+REGULAR / COMMERCIAL LICENSE
+Copyright (c) 2025–2026 Tanbir. All rights reserved.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GRANT OF LICENSE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The purchase of this template grants you (the "Licensee") a
+non-exclusive, non-transferable, worldwide license to use and
+modify the template for ONE (1) end product (website, web app,
+or client project), under the terms set out below.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT YOU CAN DO ✅
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Use this template for ONE personal or commercial website.
+2. Use this template for ONE client project.
+3. Modify, customize, or adapt the template to suit your needs.
+4. Use the template as part of a web application or SaaS product
+   (one end product per license).
+5. Sub-contract development work, provided the contractor does
+   not retain or reuse the template files after the project ends.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+WHAT YOU CANNOT DO ❌
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. REDISTRIBUTE the template source code (original or modified)
+   whether for free or for payment.
+2. RESELL or sublicense this template, in whole or in part.
+3. Include this template in a template kit, bundle, or theme
+   marketplace without explicit written permission.
+4. Use this template for more than ONE end product under a
+   single license purchase. Buy additional licenses for
+   additional projects.
+5. Claim authorship of this template.
+6. Remove or alter copyright notices in the source files.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+PERSONAL USE vs. COMMERCIAL USE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Personal Use:
+  - Building your own portfolio, blog, or hobby website.
+  - No commercial exchange for the end product itself.
+  - Covered under this single license.
+
+Commercial Use:
+  - Building a website or app that generates revenue (ads,
+    subscriptions, sales, or client billing).
+  - Building a website for a paying client.
+  - Using the template within a SaaS product.
+  - All of the above are PERMITTED under this license for ONE
+    end product, with no additional fee.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+THIRD-PARTY ASSETS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This template uses the following third-party resource:
+
+  • Plus Jakarta Sans (Google Fonts)
+    License: SIL Open Font License 1.1
+    URL: https://fonts.google.com/specimen/Plus+Jakarta+Sans
+
+All other code, styles, and graphics are original work by the
+author and are covered by this license.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DISCLAIMER OF WARRANTIES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This template is provided "AS IS", without warranty of any
+kind, express or implied. The author shall not be liable for
+any claim, damages, or other liability arising from the use of
+this template.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+For licensing questions or bulk/extended license inquiries,
+contact the author via the Gumroad product page.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

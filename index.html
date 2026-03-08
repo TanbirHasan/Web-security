@@ -170,7 +170,7 @@
     ============================================================ */
     .hero {
       position:relative; min-height:100vh; display:flex; align-items:center;
-      padding:120px 0 80px; overflow:hidden;
+      padding:120px 0 80px; overflow-x:clip;
     }
     .hero__blobs { position:absolute; inset:0; pointer-events:none; z-index:0; }
     .hero__blob {
@@ -207,7 +207,7 @@
       position:relative; z-index:1; display:grid;
       grid-template-columns:1fr 1fr; align-items:center; gap:60px;
     }
-    .hero__content { animation:fadeUp 0.8s ease both; }
+    .hero__content { animation:fadeUp 0.8s ease forwards; opacity:1; }
     .hero__eyebrow {
       display:inline-flex; align-items:center; gap:10px;
       background:rgba(6,182,212,0.1); border:1px solid rgba(6,182,212,0.25);
@@ -237,7 +237,7 @@
     .hero__proof-text strong { color:var(--text-primary); }
     .hero__stars { color:#f59e0b; font-size:13px; }
 
-    .hero__visual { position:relative; animation:fadeUp 0.8s ease 0.2s both; }
+    .hero__visual { position:relative; animation:fadeUp 0.8s ease 0.2s forwards; opacity:1; }
     .hero__mockup {
       background:rgba(255,255,255,0.03); border:1px solid var(--border);
       border-radius:var(--radius-lg); overflow:hidden; backdrop-filter:blur(12px);
@@ -331,8 +331,12 @@
     .badge-dot.red { background:#ef4444; box-shadow:0 0 8px #ef4444; }
 
     @keyframes fadeUp {
-      from { opacity:0; transform:translateY(30px); }
+      from { opacity:0; transform:translateY(20px); }
       to   { opacity:1; transform:translateY(0); }
+    }
+    /* Ensure hero is always visible in screenshots / print / headless capture */
+    @media print, (prefers-reduced-motion: reduce) {
+      .hero__content, .hero__visual { animation:none !important; opacity:1 !important; transform:none !important; }
     }
 
     /* ============================================================
